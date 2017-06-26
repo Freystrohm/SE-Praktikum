@@ -71,7 +71,7 @@ void FSM::evalEvents()
 		break;
 	case Transport:
 		//Tue Höhenmessung!!!-------------------------------------------------------------------------------------------------------
-		if (!checkHight())
+		if (!plugin->result())
 		{
 			currentState = WrongBlock;
 		}
