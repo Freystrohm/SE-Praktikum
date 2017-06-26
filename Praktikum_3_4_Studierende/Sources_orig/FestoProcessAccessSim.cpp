@@ -51,6 +51,8 @@ FestoProcessAccessSim::FestoProcessAccessSim(): FestoProcessAccess(NULL)
 	buttonEmergencyActive = false;
 	hight = 0;
 
+	file.open("");
+
 }
 
 FestoProcessAccessSim::~FestoProcessAccessSim()
@@ -65,6 +67,7 @@ FestoProcessAccessSim::~FestoProcessAccessSim()
 void FestoProcessAccessSim::updateInputs(void)
 {
 	printf("UpdateInputs");
+
 }
 void FestoProcessAccessSim::logProcessData()
 {

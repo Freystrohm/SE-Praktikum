@@ -9,6 +9,11 @@
 #define SOURCES_ORIG_FESTOPROCESSACCESSSIM_H_
 
 #include "FestoProcessAccess.h"
+
+#include <fstream>
+#include <iostream>
+#include <sstream>
+
 class FestoProcessAccessSim:public FestoProcessAccess {
 
 private:
@@ -25,6 +30,7 @@ private:
 	bool resetLED;
 	bool q1LED;
 	bool q2LED;
+
 	bool beginningSensor;
 	bool hightSensor;
 	bool metalDetector;
@@ -39,6 +45,8 @@ private:
 	bool buttonResetPressed;
 	bool buttonEmergencyActive;
 	unsigned short hight;
+
+	std::ifstream file, logFile;
 
 
 
