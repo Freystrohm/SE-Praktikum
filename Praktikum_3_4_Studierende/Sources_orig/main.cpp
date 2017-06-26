@@ -17,10 +17,13 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     bool run = true; // set this variable to false whilst debugging to end program.
-    FSMFactory factory;
+//    FSMFactory factory;
+//
+//    FSM* fsm = factory.createFSM();
 
-    FSM* fsm = factory.createFSM();
+    FestoProcessAccess* processAcc = new FestoProcessAccess(NULL);
 
+    FSM* fsm = new FSM(processAcc, new HightMeasure(processAcc));
     // Start Processing
     while (fsm != NULL && run) {
         fsm->eval();
