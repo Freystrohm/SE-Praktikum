@@ -13,7 +13,7 @@
 #include "FestoProcessAccess.h"
 #include "plugin.h"
 
-enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached};
+enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached, HightMeasure1, HightMeasure2, HightMeasure3, HightMeasure4, HightMeasure5, WrongBlock};
 
 class FSM {
 private:

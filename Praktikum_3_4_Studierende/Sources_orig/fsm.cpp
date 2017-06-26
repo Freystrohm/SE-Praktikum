@@ -53,6 +53,7 @@ void FSM::evalEvents() {
             }
             break;
         case Transport:
+        	//Tue Höhenmessung!!!-------------------------------------------------------------------------------------------------------
             if (process->isItemAtMetalDetector()) {
                 currentState = MetalDetection;
             }
