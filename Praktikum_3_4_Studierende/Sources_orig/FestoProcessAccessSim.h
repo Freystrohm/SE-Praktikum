@@ -43,6 +43,8 @@ private:
 
 
 public:
+	FestoProcessAccessSim();
+	~FestoProcessAccessSim();
     void updateInputs(void);
     void applyOutput(void);
 public:

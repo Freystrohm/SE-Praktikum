@@ -8,6 +8,7 @@
 
 #include "hightMeasure.h"
 
+
 #define MEASURE0 3770
 #define MEASURE1 3360
 #define MEASURE2 3710
@@ -19,7 +20,7 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
 {
 	this->process = process;
 	res=true;
-	hightState = MEASURE0;
+	hightState = HightMeasure0;
 }
 
  void HightMeasure::evalCycle()

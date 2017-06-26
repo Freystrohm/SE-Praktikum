@@ -23,7 +23,7 @@
 
 /* Facade as delegate*/
 class FestoProcessAccess : public FestoProcessSensors, FestoProcessActuators {
-private:
+protected:
     time_t timeCounter;
     FestoProcessImage* process;
     FILE* logFile;

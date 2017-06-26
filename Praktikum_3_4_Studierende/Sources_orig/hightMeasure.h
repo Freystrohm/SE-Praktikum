@@ -9,6 +9,7 @@
 #define SOURCES_ORIG_HIGHTMEASURE_H_
 
 #include "plugin.h"
+#include "fsm.h"
 
 class HightMeasure: public Plugin
 {

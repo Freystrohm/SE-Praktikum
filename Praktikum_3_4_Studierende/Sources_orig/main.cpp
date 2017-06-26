@@ -9,6 +9,9 @@
 #include <cstdio>
 
 #include "factory.h"
+#include "hightMeasure.h"
+#include "FestoProcessAccess.h"
+#include "FestoProcessAccessSim.h"
 
 using namespace std;
 
@@ -21,7 +24,7 @@ int main(int argc, char** argv) {
 //
 //    FSM* fsm = factory.createFSM();
 
-    FestoProcessAccess* processAcc = new FestoProcessAccess(NULL);
+    FestoProcessAccess* processAcc = new FestoProcessAccessSim();
 
     FSM* fsm = new FSM(processAcc, new HightMeasure(processAcc));
     // Start Processing
@@ -31,6 +34,7 @@ int main(int argc, char** argv) {
 
     delete fsm;
 
+    puts("!!!Hello World!Test!!"); /* prints !!!Hello World!!! */
     return 0;
 }
 
