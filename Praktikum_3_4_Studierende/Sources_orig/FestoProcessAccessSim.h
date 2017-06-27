@@ -13,6 +13,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+//#include <cstdlib>
 
 class FestoProcessAccessSim:public FestoProcessAccess {
 
@@ -46,7 +47,11 @@ private:
 	bool buttonEmergencyActive;
 	unsigned short hight;
 
-	std::ifstream file, logFile;
+	std::ifstream file;
+	int filenr;
+
+public:
+	bool run;
 
 
 

@@ -37,19 +37,18 @@ int main(int argc, char** argv)
 
 	FSM* fsm = new FSM(processAcc, new HightMeasure(processAcc));
 	// Start Processing
-//	while (fsm != NULL && run)
-//	{
-//		fsm->eval();
-//		fflush(stdout);
-//		Sleep(1000);
-//	}
+	while (fsm != NULL && run)
+	{
+		fsm->eval();
+		fflush(stdout);
+		Sleep(50);
+	}
 
 	delete fsm;
 
 	puts("!!!Hello World!Test!!"); /* prints !!!Hello World!!! */
 
 	ifstream file("Test.txt");
-	ifstream
 	if(file == NULL)
 	{
 		std::cout<<"file leer";
@@ -61,11 +60,15 @@ int main(int argc, char** argv)
 	std::cout<< str << "\n";
 
 	string s;
-	int a;
+	bool a;
 	stringstream sstream(str);
 
 	sstream >> s >> a;
 	std::cout << s << " " << a << "\n";
+	if (a)
+	{
+		cout<<"a ist true";
+	}
 
 
 	return 0;

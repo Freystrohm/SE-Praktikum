@@ -13,12 +13,15 @@
 #include "FestoProcessAccessSim.h"
 #include <time.h>
 
-FestoProcessAccessSim::FestoProcessAccessSim(): FestoProcessAccess(NULL)
+using namespace std;
+
+FestoProcessAccessSim::FestoProcessAccessSim() :
+		FestoProcessAccess(NULL)
 {
 	timeCounter = 0;
 
 #ifdef LOG_PROCESS
-	logFile = fopen("c:\\tmp\\processlog.txt", "w");
+	logFile = fopen("processlog.txt", "w");
 #else
 	logFile = NULL;
 #endif
@@ -51,7 +54,9 @@ FestoProcessAccessSim::FestoProcessAccessSim(): FestoProcessAccess(NULL)
 	buttonEmergencyActive = false;
 	hight = 0;
 
-	file.open("");
+	file.open("TestFiles\\TestdurchlaufBisTransport.txt");
+	filenr = 1;
+	run = true;
 
 }
 
@@ -62,11 +67,59 @@ FestoProcessAccessSim::~FestoProcessAccessSim()
 	{
 		fclose(logFile);
 	}
+	file.close();
 }
 
 void FestoProcessAccessSim::updateInputs(void)
 {
 	printf("UpdateInputs");
+	string str, temp;
+	getline(file, str);
+	stringstream stream(str);
+	switch (filenr) {
+	case 1:
+		stream >> beginningSensor >> hightSensor >> metalDetector
+				>> metalDetected >> slide >> slidePassed >> end
+				>> buttonStartPressed >> buttonStartPositiveEdge
+				>> buttonStartNegativeEdge >> buttonStopPressed
+				>> buttonResetPressed >> buttonEmergencyActive >> hight;
+		if (file.eof())
+		{
+			filenr = 2;
+			file.close();
+			file.open("Logs\\processlog2.txt");
+		}
+		break;
+	case 2:
+		getline(file, str);
+		for (int i = 0; i < str.size(); i++)
+		{
+			if (str[i] == ';')
+			{
+				str[i] = ' ';
+			}
+		}
+		stream >> temp >> temp >> hight;
+		if (file.eof())
+		{
+			filenr = 3;
+			file.close();
+			//file.open("TestFiles\\TestdurchlaufKorrekterBaustein.txt");
+			file.open("TestFiles\\TestdurchlaufFehlerhafterBaustein.txt");
+		}
+		break;
+	case 3:
+		stream >> beginningSensor >> hightSensor >> metalDetector
+				>> metalDetected >> slide >> slidePassed >> end
+				>> buttonStartPressed >> buttonStartPositiveEdge
+				>> buttonStartNegativeEdge >> buttonStopPressed
+				>> buttonResetPressed >> buttonEmergencyActive >> hight;
+		if (file.eof())
+		{
+			run = false;
+
+		}
+	}
 
 }
 void FestoProcessAccessSim::logProcessData()
@@ -85,7 +138,7 @@ void FestoProcessAccessSim::driveRight(void)
 	directionSlowLeft = false;
 	directionSlowRight = false;
 	directionStop = false;
-	printf("Drive Right");
+	printf("Drive Right\n");
 }
 
 void FestoProcessAccessSim::driveLeft(void)
@@ -95,7 +148,7 @@ void FestoProcessAccessSim::driveLeft(void)
 	directionSlowLeft = false;
 	directionSlowRight = false;
 	directionStop = false;
-	printf("Drive Left");
+	printf("Drive Left\n");
 }
 
 void FestoProcessAccessSim::driveSlowRight(void)
@@ -105,7 +158,7 @@ void FestoProcessAccessSim::driveSlowRight(void)
 	directionSlowLeft = false;
 	directionSlowRight = true;
 	directionStop = false;
-	printf("Drives slow Right");
+	printf("Drives slow Right\n");
 }
 
 void FestoProcessAccessSim::driveSlowLeft(void)
@@ -115,7 +168,7 @@ void FestoProcessAccessSim::driveSlowLeft(void)
 	directionSlowLeft = true;
 	directionSlowRight = false;
 	directionStop = false;
-	printf("Drives slow Left");
+	printf("Drives slow Left\n");
 }
 
 void FestoProcessAccessSim::driveStop(void)
@@ -125,104 +178,104 @@ void FestoProcessAccessSim::driveStop(void)
 	directionSlowLeft = false;
 	directionSlowRight = false;
 	directionStop = true;
-	printf("Drive Stop");
+	printf("Drive Stop\n");
 }
 
 void FestoProcessAccessSim::openJunction(void)
 {
 	junction = true;
-	printf("Open Junction");
+	printf("Open Junction\n");
 }
 
 void FestoProcessAccessSim::closeJunction(void)
 {
 	junction = false;
-	printf("Close Junction");
+	printf("Close Junction\n");
 }
 
 void FestoProcessAccessSim::lightGreenOn(void)
 {
 	lightGreen = true;
-	printf("lightGreenON");
+	printf("lightGreenON\n");
 }
 
 void FestoProcessAccessSim::lightGreenOff(void)
 {
 	lightGreen = false;
-	printf("lightGreenOff");
+	printf("lightGreenOff\n");
 }
 
 void FestoProcessAccessSim::lightYellowOn(void)
 {
 	lightYellow = true;
-	printf("lightYellowOn");
+	printf("lightYellowOn\n");
 }
 
 void FestoProcessAccessSim::lightYellowOff(void)
 {
 	lightYellow = false;
-	printf("lightYellowOff");
+	printf("lightYellowOff\n");
 }
 
 void FestoProcessAccessSim::lightRedOn(void)
 {
 	lightRed = true;
-	printf("lightRedOn");
+	printf("lightRedOn\n");
 }
 
 void FestoProcessAccessSim::lightRedOff(void)
 {
 	lightRed = false;
-	printf("lightRedOff");
+	printf("lightRedOff\n");
 }
 
 void FestoProcessAccessSim::turnLEDStartOn(void)
 {
 	startLED = true;
-	printf("turnLEDStartOn");
+	printf("turnLEDStartOn\n");
 }
 
 void FestoProcessAccessSim::turnLEDStartOff(void)
 {
 	startLED = false;
-	printf("turnLEDStartOff");
+	printf("turnLEDStartOff\n");
 }
 
 void FestoProcessAccessSim::turnLEDResetOn(void)
 {
 	resetLED = true;
-	printf("turnLEDResetOn");
+	printf("turnLEDResetOn\n");
 }
 ;
 
 void FestoProcessAccessSim::turnLEDResetOff(void)
 {
 	resetLED = false;
-	printf("turnLEDResetOff");
+	printf("turnLEDResetOff\n");
 }
 
 void FestoProcessAccessSim::turnLEDQ1On(void)
 {
 	q1LED = true;
-	printf("turnLEDQ10nOn");
+	printf("turnLEDQ10nOn\n");
 }
 
 void FestoProcessAccessSim::turnLEDQ1Off(void)
 {
 	q1LED = false;
-	printf("turnLEDQ10nOff");
+	printf("turnLEDQ10nOff\n");
 }
 
 void FestoProcessAccessSim::turnLEDQ2On(void)
 {
 	q2LED = true;
-	printf("turnLEDQ20nOn");
+	printf("turnLEDQ20nOn\n");
 }
 
 void FestoProcessAccessSim::turnLEDQ2Off(void)
 {
 	q2LED = false;
-	printf("turnLEDQ20nOff");
+	printf("turnLEDQ20nOff\n");
 }
 
 void FestoProcessAccessSim::turnAllOff(void)
@@ -232,7 +285,7 @@ void FestoProcessAccessSim::turnAllOff(void)
 	lightYellow = false;
 	q1LED = false;
 	q2LED = false;
-	printf("turnAllOff");
+	printf("turnAllOff\n");
 }
 
 bool FestoProcessAccessSim::isItemAtBeginning(void)
