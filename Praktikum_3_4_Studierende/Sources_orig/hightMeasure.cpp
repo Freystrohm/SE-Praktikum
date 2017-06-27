@@ -45,6 +45,7 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
  		} else if (process->getHight() < MEASURE0 - DEVIATION
  				|| process->getHight() > MEASURE0 + DEVIATION)
  		{
+ 			hightState = False;
  			return false;
  		}
  		break;
@@ -56,6 +57,7 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
  		} else if (process->getHight() < MEASURE1 - DEVIATION
  				|| process->getHight() > MEASURE1 + DEVIATION)
  		{
+ 			hightState = False;
  			return false;
  		}
  		break;
@@ -67,6 +69,7 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
  		} else if (process->getHight() < MEASURE2 - DEVIATION
  				|| process->getHight() > MEASURE2 + DEVIATION)
  		{
+ 			hightState = False;
  			return false;
  		}
  		break;
@@ -78,6 +81,7 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
  		} else if (process->getHight() < MEASURE3 - DEVIATION
  				|| process->getHight() > MEASURE3 + DEVIATION)
  		{
+ 			hightState = False;
  			return false;
  		}
  		break;
@@ -89,9 +93,13 @@ HightMeasure::HightMeasure(FestoProcessAccess* process)
  		} else if (process->getHight() < MEASURE4 - DEVIATION
  				|| process->getHight() > MEASURE4 + DEVIATION)
  		{
+ 			hightState = False;
  			return false;
  		}
  		break;
+ 	case False:
+ 		hightState = HightMeasure0;
+ 		return false;
  		break;
  	}
  	return true;

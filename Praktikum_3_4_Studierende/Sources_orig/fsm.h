@@ -32,7 +32,8 @@ enum fsm_states
 	HightMeasure4,
 	HightMeasure5,
 	WrongBlock,
-	BeginningReached
+	BeginningReached,
+	False
 };
 
 class FSM
